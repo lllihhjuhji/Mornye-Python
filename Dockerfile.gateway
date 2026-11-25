@@ -1,0 +1,22 @@
+# BitChord gateway image, with Mornye as an optional backend.
+#   docker build -f Dockerfile.gateway -t bitchord-gateway .
+# Mornye's extensions need Node.js, and FLAC conversion needs ffmpeg, so this
+# is heavier than a gateway that only relays other servers; it leaves out the
+# virtual display/browser the full Mornye image carries.
+FROM python:3.12-slim
+ENV PYTHONUNBUFFERED=1 PYTHONDONTWRITEBYTECODE=1 HOME=/home/appuser
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends tini ca-certificates ffmpeg flac nodejs \
+    && rm -rf /var/lib/apt/lists/*
+WORKDIR /srv
+COPY pyproject.toml requirements.txt README.md MANIFEST.in ./
+COPY mornye ./mornye
+RUN pip install --no-cache-dir .
+COPY bitchord_gateway ./bitchord_gateway
+RUN useradd -m appuser && mkdir -p /home/appuser/.cache && chown -R appuser /srv /home/appuser
+USER appuser
+ENV MORNYE_BACKEND_CACHE_DIR=/home/appuser/.cache/bitchord_gateway
+EXPOSE 8000
+HEALTHCHECK --interval=30s --timeout=3s CMD python -c "import urllib.request,os;urllib.request.urlopen('http://127.0.0.1:%s/health'%os.environ.get('PORT','8000'))"
+ENTRYPOINT ["tini","--"]
+CMD ["sh","-c","uvicorn bitchord_gateway.main:create_app --factory --host 0.0.0.0 --port ${PORT:-8000} --workers ${WEB_CONCURRENCY:-1} --proxy-headers --forwarded-allow-ips='*'"]

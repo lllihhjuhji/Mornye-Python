@@ -22,6 +22,8 @@ usefully. The text is unchanged by the split.
 | [REST API](rest-api.md) | The versioned `/api/v1` surface, quotas and the admin endpoints |
 | [The Player](player.md) | The built-in player and its native engine: bitstream to S/PDIF and HDMI, output device, exclusive mode, gapless, ReplayGain, equalizer, keyboard |
 | [Subsonic](subsonic.md) | Playing the library from Symfonium, Feishin, DSub and other Subsonic apps |
+| [BitChord Gateway](bitchord-gateway.md) | The bundled BitChord addon relay: sources, fallback chain, running it and registering it in BitChord |
+| [BitChord Gateway on Termux](bitchord-gateway-termux.md) | Running the gateway (and Mornye as its source) on an Android phone |
 | [Docker](docker.md) | Headless and NAS setups |
 | [CLI](cli.md) | The standalone executables |
 

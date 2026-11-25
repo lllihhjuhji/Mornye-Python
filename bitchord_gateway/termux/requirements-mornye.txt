@@ -1,0 +1,19 @@
+# What `import mornye` + AsyncMornye (search/download, no GUI/TUI) needs, for
+# `pip install --no-deps .`. Left out on purpose: pywebview, textual, python-mpv,
+# numpy, soundfile, keyring, smbprotocol, pydoll, pyacoustid. Those are the
+# desktop window, terminal UI, native player and optional checks; the gateway
+# never imports them.
+httpx[http2]>=0.27.0
+mutagen>=1.47.0
+pydantic>=2.7.0
+cryptography>=50.0.0
+packaging>=23.0
+tqdm>=4.66.3
+aiofiles>=23.2.1
+tenacity>=8.3.0
+python-dotenv>=1.2.2
+multidict>=6.9.1
+requests>=2.33.0
+# Cover art and some extensions' decryption. Installed from `pkg` when possible.
+Pillow>=13.0.0
+pycryptodome>=3.20.0

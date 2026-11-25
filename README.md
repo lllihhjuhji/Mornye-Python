@@ -147,6 +147,7 @@ renders it usefully. Every page below is the same text that used to be here.
 | [Following Artists](docs/guide/subscriptions.md) | Subscriptions, new-release checks, scheduled playlist monitoring, and the library-upgrade pass |
 | [REST API](docs/guide/rest-api.md) | The versioned `/api/v1` surface, quotas and the admin endpoints |
 | [Subsonic](docs/guide/subsonic.md) | Playing the library from Symfonium, Feishin, DSub and other Subsonic apps |
+| [BitChord Gateway](docs/guide/bitchord-gateway.md) | The bundled BitChord addon relay (`bitchord_gateway/`): sources, fallback chain, running and registering it |
 | [Docker](docs/guide/docker.md) | Headless and NAS setups |
 | [CLI](docs/guide/cli.md) | The standalone executables |
 

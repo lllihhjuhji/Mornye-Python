@@ -1,0 +1,6 @@
+# Termux: no uvicorn[standard] (uvloop/httptools do not build or run on Android;
+# plain uvicorn falls back to asyncio + h11 on its own).
+fastapi>=0.110,<1.0
+uvicorn>=0.29
+httpx>=0.27,<1.0
+pydantic>=2.6,<3.0
